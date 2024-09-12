@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ProjectWeb\\WebTrain\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\modelview\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\modelview\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\helper\\sendmailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\helper\\sendmailhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\areas\\admin\\controllers\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\areas\\admin\\controllers\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\helper\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\helper\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminProductsController.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "RelativeToolTip": "ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T02:24:03.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Program.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Program.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Program.cs",
+              "RelativeToolTip": "ClotheStore\\Program.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T02:22:34.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\ModelView\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\ModelView\\RegisterViewModel.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\ModelView\\RegisterViewModel.cs",
+              "RelativeToolTip": "ClotheStore\\ModelView\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T02:15:43.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Controllers\\AccountController.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "ClotheStore\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAqwMMAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T01:39:34.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MailSettings.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Helper\\MailSettings.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Helper\\MailSettings.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Helper\\MailSettings.cs",
+              "RelativeToolTip": "ClotheStore\\Helper\\MailSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T15:47:58.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SendMailHelper.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Helper\\SendMailHelper.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Helper\\SendMailHelper.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Helper\\SendMailHelper.cs",
+              "RelativeToolTip": "ClotheStore\\Helper\\SendMailHelper.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAhwC8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T12:23:47.226Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

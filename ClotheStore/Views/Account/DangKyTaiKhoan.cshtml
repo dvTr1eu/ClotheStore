@@ -1,0 +1,61 @@
+﻿@model ClotheStore.ModelView.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title> Đăng ký</title>
+    <link rel="icon" href="~/images/main_icon.png" />
+    <link rel="stylesheet" href="~/UserAssets/Login_Register/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <form asp-action="DangKyTaiKhoan">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="title">Đăng ký</div>
+        <div class="input-box underline">
+            <input asp-for="CustomerName" type="text" placeholder="Họ tên" required>
+            <div class="underline"></div>
+            <span asp-validation-for="CustomerName" class="text-danger"></span>
+        </div>
+        <div class="input-box underline">
+            <input asp-for="Phone" type="tel" placeholder="Số điện thoại" required>
+            <div class="underline"></div>
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div class="input-box underline">
+            <input asp-for="Email" type="email" placeholder="Email" required>
+            <div class="underline"></div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="input-box">
+            <input asp-for="Password" type="password" placeholder="Mật khẩu" required>
+            <div class="underline"></div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="input-box">
+            <input asp-for="ConfirmPassword" type="password" placeholder="Nhập lại mật khẩu" required>
+            <div class="underline"></div>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="input-box button">
+            <input type="submit" name="" value="Đăng ký">
+        </div>
+    </form>
+    <div class="toLogin">Bạn đã có tài khoản?<a asp-action="Login">Đăng nhập</a></div>
+    <div class="option">Hoặc</div>
+    <div class="twitter">
+        <a href="#"><i class="fab fa-google"></i>Đăng nhập với Google</a>
+    </div>
+    <div class="facebook">
+        <a href="#"><i class="fab fa-facebook-f"></i>Đăng nhập với Facebook</a>
+    </div>
+</div>
+</body>
+</html>

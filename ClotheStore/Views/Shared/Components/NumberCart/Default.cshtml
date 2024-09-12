@@ -1,0 +1,25 @@
+﻿@using System.Numerics
+@model List<ClotheStore.ModelView.CartItem>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <a href="#" class="cart-icon">
+        <i class="fa fa-shopping-bag"></i>
+        @{
+            int total = 0;
+        }
+        @foreach (var itemQuantity in Model)
+        {
+            total += itemQuantity.amount;
+            <span class="cart-count">@total</span>
+        }
+    </a>
+}
+else
+{
+    <a href="#" class="cart-icon">
+        <i class="fa fa-shopping-bag"></i>
+        <span style="display: none" class="cart-count">0</span>
+    </a>
+}
+

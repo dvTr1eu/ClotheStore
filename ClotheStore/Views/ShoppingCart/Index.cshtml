@@ -1,0 +1,179 @@
+﻿@model List<ClotheStore.ModelView.CartItem>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Tạm tính</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img style="width: 100px" src="@item.urlImg" alt="@item.product.Title"/>
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                                <h6 class="product-id" data-productid="@item.product.ProductId">@item.product.ProductName - @item.size</h6>
+                                            <h5>@item.product.Price.Value.ToString("#,##0")₫</h5>
+                                        </div>
+                                    </td>
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                <input id="quantityItem" type="number" min="1" value="@item.amount">
+                                            </div>
+                                            <div id="quantityError" style="color:red; display:none;">Số lượng vượt quá số lượng trong kho</div>
+                                        </div>
+                                    </td>
+                                        <td class="cart__price">@item.totalMoney.ToString("#,##0")₫</td>
+                                        <td class="cart__close">
+                                            <i id="removeItem" style="cursor: pointer" class="fa fa-close" data-mahh="@item.product.ProductId" data-size="@item.size" data-src="@item.urlImg"></i>
+                                        </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6">
+                                    <p style="text-align: center;">Chưa có sản phẩm trong giỏ hàng</p>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a asp-controller="Home" asp-action="Index">Tiếp tục mua hàng</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6" id="updateCart">
+                        <div class="continue__btn update__btn">
+                            <a style="cursor: pointer"><i class="fa fa-spinner"></i> Cập nhật giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart__discount">
+                    <h6>Mã giảm giá</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Coupon code">
+                        <button type="submit">Áp dụng</button>
+                    </form>
+                </div>
+                <div class="cart__total">
+                    <h6>Tổng đơn hàng</h6>
+                    <ul>
+                        <li>Tạm tính <span>@Model.Sum(x => x.totalMoney).ToString("#,##0")₫</span></li>
+                        <li>Tổng <span>@Model.Sum(x => x.totalMoney).ToString("#,##0")₫</span></li>
+                    </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/thanhtoan.html" class="primary-btn">TIẾN HÀNH THANH TOÁN</a>
+                    }
+                    else
+                    {
+                        <a href="/dang-nhap.html?returnUrl=/thanhtoan.html" class="primary-btn">TIẾN HÀNH THANH TOÁN</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(function() {
+                $("#removeItem").click(function() {
+                    var productId = $(this).attr("data-mahh");
+                    var size = $(this).attr("data-size");
+                    var urlImg = $(this).attr("data-src");
+                    $.ajax({
+                        url: "/api/cart/remove",
+                        type: "POST",
+                        dataType: "JSON",
+                        data: {
+                            productId: productId,
+                            size: size,
+                            urlImg: urlImg
+                        },
+                        success: function(result) {
+                            if (result.success) {
+                                loadHeaderCart();
+                                window.location = "giohang.html";
+                            }
+                        },
+                        error: function(error) {
+                            alert("Đã xảy ra lỗi vui lòng kiểm tra lại ajax detail products" + erro.responseText);
+                        }
+                    });
+                });
+
+                $("#updateCart").click(function () {
+                    console.log("Update cart button clicked!");
+                    var cartItems = [];
+                    $("tr").each(function () {
+                        var productId = $(this).find(".product-id").data("productid");
+                        var newAmount = $(this).find("#quantityItem").val();
+                        console.log("Product ID: ", productId);  
+                        console.log("New Amount: ", newAmount);
+                        if (newAmount > 0) {
+                            cartItems.push({
+                                productId: productId,
+                                amount: newAmount
+                            });
+                        }
+                    });
+
+                    if (cartItems.length > 0) {
+                        $.ajax({
+                            url: "/api/cart/update",
+                            type: "POST",
+                            dataType: "JSON",
+                            contentType: "application/json; charset=utf-8", 
+                            data: JSON.stringify(cartItems),
+                            success: function (result) {
+                                if (result.success) {
+                                    loadHeaderCart();
+                                    location.reload();  
+                                }
+                            },
+                            error: function (error) {
+                                alert("Đã xảy ra lỗi, vui lòng kiểm tra lại: " + error.responseText);
+                            }
+                        });
+                    } else {
+                        alert("Vui lòng chọn ít nhất 1 sản phẩm với số lượng lớn hơn 0");
+                        console.log(cartItems)
+                    }
+                });
+
+                function loadHeaderCart() {
+                    $("#headerCart").load("/AjaxContent/HeaderCart");
+                    $("#numberCart").load("/AjaxContent/NumberCart");
+                }
+            });
+        });
+    </script>
+}
+

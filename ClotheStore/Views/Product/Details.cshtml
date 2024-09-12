@@ -1,0 +1,325 @@
+﻿ @model ClotheStore.Models.Product
+ 
+ @{
+     List<Product> sanPhamTuongTu = ViewBag.sanPhamTuongTu;
+ }
+ <!-- Shop Details Section Begin -->
+<section class="shop-details">
+    <div class="product__details__pic">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <ul class="nav nav-tabs" role="tablist">
+                        @if (Model != null)
+                        {
+                            int i = 0;
+                            foreach (var itemImage in Model.ProductImages)
+                            {
+                                var activeClass = i == 0 ? "active" : "";
+                                <li class="nav-item">
+                                    <a class="nav-link @activeClass" data-toggle="tab" href="#tab-@i" role="tab">
+                                        <div class="product__thumb__pic set-bg">
+                                            <img src="~/images/sanphamImg/@itemImage.ImageUrl" alt="@itemImage.Product.ProductName" />
+                                        </div>
+                                    </a>
+                                </li>
+                                i++;
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-9">
+                    <div class="tab-content">
+                        @if (Model != null)
+                        {
+                            int j = 0;
+                            foreach (var item in Model.ProductImages)
+                            {
+                                var activeClass = j == 0 ? "active" : "";
+                                <div class="tab-pane @activeClass" id="tab-@j" role="tabpanel">
+                                    <div class="product__details__pic__item">
+                                        <img src="~/images/sanphamImg/@item.ImageUrl" alt="@item.Product.ProductName">
+                                    </div>
+                                </div>
+                                j++;
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product__details__content">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="product__details__text">
+                        <h4>@Model.ProductName</h4>
+                        <h3>@Model.Price.Value.ToString("#,##0")₫</h3>
+                        <button id="sizeGuideButton" class="size-guide-button">
+                            Bảng hướng dẫn chọn size
+                        </button>
+                        <div id="sizeGuideModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h2>Bảng hướng dẫn chọn size</h2>
+                                <img src="~/images/bangsize.jpg" />
+                            </div>
+                        </div>
+                        <div class="product__details__option">
+                            <div class="product__details__option__size">
+                                <span>Size:</span>
+                                @if (Model != null)
+                                {
+                                    foreach (var itemSize in Model.ProductSizes)
+                                    {
+                                        <label for="@itemSize.Size.SizeName" onclick="showQuantity('@itemSize.Size.SizeName', @itemSize.Quantity)">
+                                            @itemSize.Size.SizeName
+                                            <input name="size" type="radio" id="@itemSize.Size.SizeName" data-quantity="@itemSize.Quantity">
+                                        </label>
+                                    }
+                                }
+                            </div>
+                            <div id="quantityInfo" style="display:none; padding-top:12px">
+                                <span>Số lượng: <span id="quantity"></span></span>
+                                <button style="border: none " type="button" onclick="clearSelection()">Xóa</button>
+                            </div>
+                        </div>
+                        <div class="product__details__cart__option">
+                            <div class="quantity">
+                                <div class="">
+                                    <input style="color: #0d0d0d;
+                                                  font-size: 15px;
+                                                  font-weight: 700;
+                                                  width: 70px;
+                                                  height: 45px;
+                                                  text-align: center;
+                                                  border: 1px solid;" type="number" min="1" value="1" id="selectedQuantity" oninput="checkQuantity()">
+                                </div>
+                            </div>
+                            <a id="add-to-cart" class="primary-btn" style="color: #fefefe; cursor: pointer">
+                                thêm vào giỏ hàng
+                                <input hidden asp-for="ProductId"/>
+                            </a>
+                            <div id="quantityError" style="color:red; display:none;">Số lượng vượt quá số lượng trong kho</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Details Section End -->
+<!-- Related Section Begin -->
+<section class="related spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="related-title">Sản phẩm liên quan</h3>
+            </div>
+        </div>
+        <div class="row">
+            @if (sanPhamTuongTu != null)
+            {
+                foreach (var itemProduct in sanPhamTuongTu)
+                {
+                    string url = Url.Action("Details", "Product", new { id = itemProduct.ProductId, parentId = itemProduct.Cat.ParentId, level = itemProduct.Cat.Levels, ordering = itemProduct.Cat.Ordering });
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            @{
+                                var firstImage = itemProduct.ProductImages.FirstOrDefault();
+                            }
+                            @if (firstImage != null)
+                            {
+                                <div class="product__item__pic set-bg">
+                                    <a href="@url">
+                                        <img src="~/images/sanphamImg/@firstImage.ImageUrl"/>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="product__item__pic set-bg">
+                                    <img src="~/images/sanphamImg/default.jpg" />
+                                </div>
+                            }
+                            <div class="product__item__text">
+                                <h6>@itemProduct.ProductName</h6>
+                                <a href="@url" class="add-cart">=> Xem chi tiết</a>
+                                <h5>@itemProduct.Price.Value.ToString("#,##0")₫</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- Related Section End -->
+@section Styles{
+    <style>
+        button {
+            border: none;
+            margin-bottom: 12px;
+            text-decoration: underline;
+        }
+
+        .img {
+            width: 100%;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%; 
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+}
+@section Scripts{
+    <script>
+        function showQuantity(sizeName, quantity) {
+            document.getElementById('quantity').innerText = quantity;
+            document.getElementById('quantityInfo').style.display = 'block';
+
+            var labels = document.querySelectorAll('.product__details__option__size label');
+            labels.forEach(function(label) {
+                label.classList.remove('active');
+            });
+
+            var selectedLabel = document.querySelector('label[for="' + sizeName + '"]');
+            selectedLabel.classList.add('active');
+        }
+
+        function clearSelection() {
+            var radios = document.getElementsByName('size');
+            for (var i = 0; i < radios.length; i++) {
+                radios[i].checked = false;
+            }
+            document.getElementById('quantityInfo').style.display = 'none';
+            document.getElementById('quantityError').style.display = 'none';
+            document.getElementById('selectedQuantity').value = 1;
+
+            var labels = document.querySelectorAll('.product__details__option__size label');
+            labels.forEach(function(label) {
+                label.classList.remove('active');
+            });
+        }
+
+        function updateMaxQuantity(maxQuantity) {
+            var quantityInput = document.getElementById('selectedQuantity');
+            quantityInput.max = maxQuantity;
+        }
+
+        function checkQuantity() {
+            var quantityInput = document.getElementById('selectedQuantity');
+            var selectedSize = document.querySelector('input[name="size"]:checked');
+        
+            if (selectedSize) {
+                var maxQuantity = parseInt(selectedSize.getAttribute('data-quantity'));
+                var selectedQuantity = parseInt(quantityInput.value);
+            
+                if (selectedQuantity > maxQuantity) {
+                    document.getElementById('quantityError').style.display = 'block';
+                } else {
+                    document.getElementById('quantityError').style.display = 'none';
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("sizeGuideModal");
+            var btn = document.getElementById("sizeGuideButton");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        $(document).ready(function () {
+            $(function () {
+                $("#add-to-cart").click(function () {
+                    var productId = $("#ProductId").val();
+                    var soLuong = $("#selectedQuantity").val();
+                    var size = $("input[name='size']:checked");
+                    var tagA = $(".active");
+                    if (tagA.hasClass("active")) {
+                        var newId = tagA.find("img");
+                        newId.attr("id", "selectedImg");
+                    }
+                    var urlImg = document.getElementById("selectedImg").src;
+                    if (size.is(':checked') == false) {
+                        alert("Vui lòng chọn size");
+                    } 
+                    else {
+                        var sizeSelected = size.attr("id");
+                        $.ajax({
+                            url: "/api/cart/add",
+                            type: "POST",
+                            dataType: "JSON",
+                            data: {
+                                productId: productId,
+                                amount: soLuong,
+                                size: sizeSelected,
+                                urlImg: urlImg
+                            },
+                            success: function (response) {
+                                loadHeaderCart();
+                                location.reload();
+                                $("#successMessage").fadeIn().delay(2000).fadeOut();
+                            },
+                            error: function (error) {
+                                alert("Đã xảy ra lỗi vui lòng kiểm tra lại ajax detail products" + erro.responseText);
+                            }
+                        });
+                    }
+                });
+                function loadHeaderCart() {
+                    $("#headerCart").load("/AjaxContent/HeaderCart");
+                    $("#numberCart").load("/AjaxContent/NumberCart");
+                }
+            });
+        });
+    </script>
+}

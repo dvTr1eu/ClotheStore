@@ -1,0 +1,74 @@
+﻿@model List<Order>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Order #</th>
+                    <th>Ngày mua</th>
+                    <th>Ngày nhận hàng</th>
+                    <th>Trạng thái</th>
+                    <th>Tồng tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Deleted != true && item.IsHistory == true)
+                    {
+                        <tr>
+                            <td id="orderRow_@item.OrderId">@item.OrderId</td>
+                            <td>@String.Format("{0:dd/MM/yyyy}", @item.OrderDate)</td>
+                            <td>@String.Format("{0:dd/MM/yyyy}", @item.ShipDate)</td>
+                            <td>
+                                @if (item.TransactStatus.TransactStatusId == 4)
+                                {
+                                    <span class="badge bg-success m-0">@item.TransactStatus.Status</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger m-0">@item.TransactStatus.Status</span>
+                                }
+                            </td>
+                            <td><span>@item.TotalMoney.Value.ToString("#,##0")₫</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="xemdonhangdamua" data-madonhangdamua="@item.OrderId">Xem đơn hàng</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div id="records_table_history">
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Order #</th>
+                    <th>Ngày mua</th>
+                    <th>Ngày giao</th>
+                    <th>Trạng thái</th>
+                    <th>Tồng tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="text-align: center; padding-top: 12px;">
+                        Bạn chưa có đơn hàng nào !
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,245 @@
+﻿@model ClotheStore.ModelView.MuaHangVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<ClotheStore.ModelView.CartItem> carts = ViewBag.GioHang;
+}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Thanh toán</h4>
+                    <div class="breadcrumb__links">
+                        <a asp-action="Index" asp-controller="Home">Trang chủ</a>
+                        <span>Thanh toán</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="checkout" style="margin-top: 40px">
+    <div class="container">
+        <div class="checkout__form">
+            <form asp-action="Index" asp-controller="Checkout" method="post">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h6 class="checkout__title">Thông tin khách hàng</h6>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="checkout__input">
+                                    <p>Họ và tên<span>*</span></p>
+                                    <input asp-for="FullName" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Số điện thoại<span>*</span></p>
+                                    <input asp-for="PhoneNumber" type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Email<span>*</span></p>
+                                    <input asp-for="Email" type="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Địa chỉ nhận hàng<span>*</span></p>
+                            <input asp-for="Address" type="text">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="checkout__input">
+                                    <p>Tỉnh / Thành<span>*</span></p>
+                                    <select asp-for="TinhThanh" asp-items="ViewBag.lsTinhThanh">
+                                        <option value="0" disabled selected>Chọn Tỉnh/Thành</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="checkout__input">
+                                    <p>Quận / Huyện<span>*</span></p>
+                                    <select asp-for="QuanHuyen">
+                                        <option value="0" disabled selected>Chọn Quận/Huyện</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="checkout__input">
+                                    <p>Phường / Xã<span>*</span></p>
+                                    <select asp-for="PhuongXa">
+                                        <option value="0" disabled selected>Chọn Phường/Xã</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Ghi chú</p>
+                            <textarea asp-for="Note" name="Note" style="border: 1px solid #e1e1e1" class="col-lg-12" rows="5" 
+                                   placeholder="Ghi chú về đơn hàng của bạn"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="checkout__order">
+                            <h4 class="order__title">Thông tin đơn hàng</h4>
+                            <ul class="checkout__total__products">
+                                <table style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Tạm tính</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(carts.Count() > 0)
+                                        {
+                                            foreach(var item in carts)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div style="display:flex">
+                                                            <img src="@item.urlImg" style="width:100px"/>
+                                                            <div style="display: grid; align-items:center; padding-left: 12px">
+                                                                <span>@item.product.ProductName - @item.size</span>
+                                                                <span>@item.amount x @item.product.Price.Value.ToString("#,##0")₫</span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            @item.totalMoney.ToString("#,##0")₫
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </ul>
+                            <ul class="checkout__total__all">
+                                <li>Tạm tính <span>@carts.Sum(x => x.totalMoney).ToString("#,##0")₫</span></li>
+                                <li>Tổng <span>@carts.Sum(x => x.totalMoney).ToString("#,##0")₫</span></li>
+                            </ul>
+                            <div class="checkout__input__checkbox">
+                                <label for="PaymentMethodCash">
+                                    Thanh toán tiền mặt khi nhận hàng
+                                    <input type="checkbox" name="PaymentMethod" id="PaymentMethodCash" value="Cash">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="PaymentMethodOnl">
+                                    Thanh toán qua VnPay
+                                    <input type="checkbox" name="PaymentMethod" id="PaymentMethodOnl" value="Onl">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <button type="submit" class="site-btn">ĐẶT HÀNG</button>
+                            <button type="submit" class="site-btn" id="vnpayPayment">TIẾN HÀNH THANH TOÁN QUA VNPAY</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("select").niceSelect();
+            $(function() {
+                $("#TinhThanh").change(function() {
+                    var locationId = $("#TinhThanh").val();
+                    $.ajax({
+                        url: "/Location/QuanHuyenList",
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { locationId: locationId },
+                        success: function(QuanHuyens) {
+                            $("#QuanHuyen").empty();
+                            $("#PhuongXa").empty();
+                            var strPhuongXa = '<option value="" disabled selected>Chọn Phường/Xã</option>';
+                            $("#PhuongXa").append(strPhuongXa);
+                            var strQuanHuyen = '<option value="" disabled selected>Chọn Quận/Huyện</option>';
+                            $("#QuanHuyen").append(strQuanHuyen);
+                            $.each(QuanHuyens,
+                                function(i, item) {
+                                    var option = '<option value="' + item.locationId + '">' + item.nameWithType + '</option>';
+                                    $("#QuanHuyen").append(option);
+                                });
+                            $("select").niceSelect('update');
+                        }
+                    });
+                });
+
+                $("#QuanHuyen").change(function () {
+                    var locationId = $("#QuanHuyen").val();
+                    $.ajax({
+                        url: "/Location/PhuongXaList",
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { locationId: locationId },
+                        success: function (PhuongXaList) {
+                            $("#PhuongXa").empty();
+                            var readonly = '<option value="" disabled selected>Chọn Phường/Xã</option>';
+                            $("#PhuongXa").append(readonly);
+                            $.each(PhuongXaList,
+                                function (i, item) {
+                                    var option = '<option value="' + item.locationId + '">' + item.nameWithType + '</option>';
+                                    $("#PhuongXa").append(option);
+                                });
+                            $("select").niceSelect('update');
+                        }
+                    });
+                });
+
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function(){
+            const cashCheckbox = document.getElementById('PaymentMethodCash');
+            const onlCheckbox = document.getElementById('PaymentMethodOnl');
+            const orderConfirmationDiv = document.querySelector('.site-btn');
+            const orderVnpConfirmationDiv = document.getElementById('vnpayPayment');
+
+            orderConfirmationDiv.style.display = 'none';
+            orderVnpConfirmationDiv.style.display = 'none';
+
+            // Xử lý sự kiện thay đổi của checkbox "Thanh toán tiền mặt"
+            cashCheckbox.addEventListener('change', function () {
+                if (cashCheckbox.checked) {
+                    onlCheckbox.checked = false;
+                    orderConfirmationDiv.style.display = 'block';
+                    orderVnpConfirmationDiv.style.display = 'none';
+                } 
+                else {
+                    orderConfirmationDiv.style.display = 'none';
+                }
+            });
+
+            // Xử lý sự kiện thay đổi của checkbox "Thanh toán bằng VnPay"
+            onlCheckbox.addEventListener('change', function () {
+                if (onlCheckbox.checked) {
+                    cashCheckbox.checked = false;
+                    orderVnpConfirmationDiv.style.display = 'block';
+                    orderConfirmationDiv.style.display = 'none';
+                } 
+                else {
+                    orderVnpConfirmationDiv.style.display = 'none';
+                }
+            });
+        })
+    </script>
+}

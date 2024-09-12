@@ -1,0 +1,48 @@
+﻿@model ClotheStore.ModelView.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title> Đăng nhập</title>
+    <link rel="icon" href="~/images/main_icon.png" />
+    <link rel="stylesheet" href="~/UserAssets/Login_Register/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="title">Đăng nhập</div>
+            <div class="input-box underline">
+                <input asp-for="Username" type="email" placeholder="Email" required>
+                <div class="underline"></div>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                <input asp-for="Password" type="password" placeholder="Mật khẩu" required>
+                <div class="underline"></div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="input-box button">
+                <input type="submit" name="" value="Đăng nhập">
+            </div>
+        </form>
+        <div class="toLogin">Bạn chưa có tài khoản?<a asp-action="DangKyTaiKhoan">Đăng ký</a></div>
+        <div class="option">Hoặc</div>
+        <div class="twitter">
+            <a href="#"><i class="fab fa-google"></i>Đăng nhập với Google</a>
+        </div>
+        <div class="facebook">
+            <a href="#"><i class="fab fa-facebook-f"></i>Đăng nhập với Facebook</a>
+        </div>
+    </div>
+</body>
+</html>
+
+ 

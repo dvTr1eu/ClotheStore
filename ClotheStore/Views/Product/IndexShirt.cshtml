@@ -1,0 +1,127 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<ClotheStore.Models.Product>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentSortProduct = ViewBag.CurrentSortProducts as string;
+
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <div class="breadcrumb__links">
+                        <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        <span >Áo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shop Section Begin -->
+<section class="shop" style="padding-top: 40px; padding-bottom: 40px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="shop__sidebar__search">
+                        <form action="#">
+                            <input type="text" placeholder="Search...">
+                            <button type="submit"><span class="icon_search"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="shop__product__option">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__left">
+                                <p>Hiển thị @Model.Count trên @Model.TotalItemCount sản phẩm</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__right">
+                                <p>Sắp xếp theo giá:</p>
+                                <select id="sortProduct" name="sortProduct" onchange="sortProducts(1,1)">
+                                    <option value="default" selected="@(currentSortProduct == "default" ? "selected" : null)">Mặc định</option>
+                                    <option value="lowToHigh" selected="@(currentSortProduct == "lowToHigh" ? "selected" : null)">Giá thấp đến cao</option>
+                                    <option value="highToLow" selected="@(currentSortProduct == "highToLow" ? "selected" : null)">Giá cao đến thấp</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="product-list">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            string url = Url.Action("Details", "Product", new { id = item.ProductId, parentId = item.Cat.ParentId, level = item.Cat.Levels, ordering = item.Cat.Ordering });
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    @{
+                                        var firstImage = item.ProductImages.FirstOrDefault();
+                                    }
+                                    @if (firstImage != null)
+                                    {
+                                        <div class="product__item__pic set-bg">
+                                            <a href="@url">
+                                                <img src="/images/sanphamImg/@firstImage.ImageUrl"/>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product__item__pic set-bg">
+                                            <img src="/images/sanphamImg/default.jpg" />
+                                        </div>
+                                    }
+                                    <div class="product__item__text">
+                                        <h6>@item.ProductName</h6>
+                                        <a href="@url" class="add-cart">=> Xem chi tiết</a>
+                                        <h5>@item.Price.Value.ToString("#,##0")₫</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__pagination" style="display: flex; justify-content: center">
+                            <pager class="pager-container"  options="PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-controller="Product" asp-action="IndexShirt"></pager>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->
+@section Scripts
+{
+    <script>
+        function sortProducts(parentId, level) {
+            var sortProduct = document.getElementById("sortProduct").value;
+            $.ajax({
+                url: '/Product/ListSort',
+                type: 'GET',
+                data: {
+                     sortProducts: sortProduct,
+                     parentId: parentId, 
+                     level: level,
+                },
+                success: function (data) {
+                    $('#product-list').html(data);
+                }
+            });
+        }
+    </script>
+}

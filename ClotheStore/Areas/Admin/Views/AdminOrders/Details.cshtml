@@ -1,0 +1,95 @@
+﻿@model ClotheStore.Models.Order
+
+@{
+    ViewData["Title"] = "Thông tin chi tiết đơn hàng " + Model.OrderId;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="modal-body" style="padding: 20px;">
+    <a style="
+    border: 1px solid;
+    padding: 5px;
+    line-height: 4px;
+    font-weight: 500;;" asp-area="Admin" asp-controller="AdminOrders" asp-action="Index">Quay lại</a>
+    <div class="card" style="border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    margin-top: 4px">
+        <div class="card-body" style="padding: 20px">
+            <h4 class="card-title" style=" margin-top: 0;">THÔNG TIN ĐƠN HÀNG @Model.OrderId</h4>
+            <div class="table-responsive" style=" overflow-x: auto;">
+                <table class="product-info-table m-t-20" style="width: 100%;
+    border-collapse: collapse;">
+                    <tbody>
+                        <tr>
+                            <td>Khách hàng: </td>
+                            <td><strong>@Model.Customer.FullName</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td><strong>@Model.Customer.Phone</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ:</td>
+                            <td><strong>@ViewBag.FullAddress</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Ghi chú:</td>
+                            <td><strong>@Model.Note</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày mua hàng:</td>
+                            <td><strong>@String.Format("{0:dd/MM/yyyy}", Model.OrderDate)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Trạng thái:</td>
+                            <td><strong>@Model.TransactStatus.Status</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày gửi hàng:</td>
+                            <td><strong>@String.Format("{0:dd/MM/yyyy}", Model.ShipDate)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr style ="text-align: center">
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thành tiền</th>
+                </trstyles>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Chitiet)
+                {
+                    <tr style="text-align: center">
+                        <th scope="row">
+                            <div class="d-flex align-items-center mt-2">
+                                <img src="@item.ImageUrl" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                            </div>
+                        </th>
+                        <td class="py-5">@item.Product.ProductName</td>
+                        <td class="py-5"> @String.Format("{0:#,##0} ₫", item.Product.Price)</td>
+                        <td class="py-5">@item.Quantity</td>
+                        <td class="py-5">@String.Format("{0:#,##0} ₫", (item.Product.Price * item.Quantity))</td>
+                    </tr>
+                }
+
+                <tr>
+                    <th scope="row">
+                    </th>
+                    <td class="py-5"></td>
+                    <td class="py-5"></td>
+                    <td class="py-5"></td>
+                    <td class="py-5">
+                        <p class="mb-0 text-dark py-3"><strong style="text-decoration: blink">Tổng tiền: @Model.TotalMoney.Value.ToString("#,##0") ₫</strong></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

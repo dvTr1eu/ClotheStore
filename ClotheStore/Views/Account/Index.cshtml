@@ -1,0 +1,171 @@
+﻿@model ClotheStore.Models.Customer
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Tài khoản của tôi";
+    List<Order> dsDonHang = ViewBag.DanhSachDH;
+    ClotheStore.ModelView.ChangePasswordViewModel changePassword = new ClotheStore.ModelView.ChangePasswordViewModel();
+}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container light-style flex-grow-1 container-p-y" style="margin-top: 40px; margin-bottom: 40px">
+    <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-3 pt-0">
+                <div class="list-group list-group-flush account-settings-links">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">Tổng quan</a>
+                    <a class="list-group-item list-group-item-action " data-toggle="list" href="#account-change-password">Đổi mật khẩu</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-category">Danh sách đơn hàng</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-category-history">Đơn hàng đã mua</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+                        <div class="card-body media align-items-center">
+                            <img id="avatarPreview" src="~/images/avatarImg/@(string.IsNullOrEmpty(Model.Avatar) ? "default_user.png" : Model.Avatar)" alt="Avatar" class="d-block ui-w-80">
+                            <div class="media-body ml-4" style="padding-top: 10px;">
+                                <form asp-action="UpdateAvatar" method="post" enctype="multipart/form-data">
+                                    <input asp-for="CustomerId" hidden/>
+                                    <label class="btn btn-outline-primary">
+                                        Cập nhật ảnh đại diện
+                                        <input asp-for="Avatar" type="file" class="account-settings-fileinput" onchange="previewAvatar(event)">
+                                    </label> &nbsp;
+
+                                    <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+
+                                    <button type="submit" class="btn btn-primary mt-2">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr class="border-light m-0">
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <p>Xin chào, @Model.FullName</p>
+                            </div>
+                            <div class="form-group">
+                                <p>E-mai: @Model.Email</p>
+                            </div>
+                            <div class="form-group">
+                                <p>Số điện thoại: @Model.Phone</p>
+                            </div>
+                            <div class="form-group">
+                                <p>Địa chỉ: @ViewBag.FullAddress </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="account-change-password">
+                        @await Html.PartialAsync("_ChangePasswordPartialView", changePassword)
+                    </div>
+                    <div class="tab-pane fade " id="account-category">
+                        <div class="card-body pb-2">
+                            @await Html.PartialAsync("_DonHangPartialView", dsDonHang)
+                        </div>
+                    </div>
+                    <div class="tab-pane fade " id="account-category-history">
+                        <div class="card-body pb-2">
+                            @await Html.PartialAsync("_DonHangDaMuaPartialView", dsDonHang)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function previewAvatar(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var avatarPreview = document.getElementById('avatarPreview');
+                avatarPreview.src = reader.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        $(document).ready(function () {
+            $('.account-settings-links a').click(function (e) {
+                e.preventDefault();
+                $('.account-settings-links a').removeClass('active'); 
+                $(this).addClass('active'); 
+
+                var target = $(this).attr('href'); 
+                $('.tab-pane').removeClass('active show');
+                $(target).addClass('active show'); 
+            });
+
+            $(".xemdonhang").click(function () {
+                var madonhang = $(this).attr("data-madonhang");
+                $.ajax({
+                    url: "/Order/Details",
+                    datatype: "json",
+                    type: "POST",
+                    data: { id: madonhang },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert(xhr);
+                    }
+                });
+            });
+
+            $(".xemdonhangdamua").click(function () {
+                var madonhangdamua = $(this).attr("data-madonhangdamua");
+                console.log("ok")
+                $.ajax({
+                    url: "/Order/Details",
+                    datatype: "json",
+                    type: "POST",
+                    data: { id: madonhangdamua },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table_history").html("");
+                        $("#records_table_history").html(results);
+                    },
+                    error: function (xhr) {
+                        alert(xhr);
+                    }
+                });
+            });
+
+
+            $(document).on('click', '#confirmOrder', function () {
+                var orderId = $(this).data("mahang");
+                console.log("ok");
+                $.ajax({
+                    url: '/Order/UpdateOrderStatus',
+                    datatype: "json",
+                    type: "POST",
+                    data: {
+                        orderId: orderId,
+                    },
+                    async: true,
+                    success: function (response) {
+                        $("#orderRow_" + orderId).remove();
+                        window.location.reload();
+                        if ($('tbody tr').length === 0) {
+                            // Nếu không còn đơn hàng nào, hiển thị thông báo "Bạn chưa có đơn hàng nào!"
+                            var emptyTableMessage = `
+                                <tr>
+                                    <td colspan="6" style="text-align: center; padding-top: 12px;">
+                                        Bạn chưa có đơn hàng nào !
+                                    </td>
+                                </tr>
+                            `;
+                            $('tbody').html(emptyTableMessage); // Thay thế nội dung của <tbody>
+                        }
+                    },
+                    error: function () {
+                        alert("Lỗi khi cập nhật trạng thái đơn hàng.");
+                    }
+                });
+            });
+        });
+    </script>
+}
+

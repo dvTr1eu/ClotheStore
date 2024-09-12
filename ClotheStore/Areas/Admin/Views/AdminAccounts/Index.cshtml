@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ClotheStore.Models.Account>
+
+@{
+    ViewData["Title"] = "Danh sách tài khoản quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+    <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                <li class="breadcrumb-item text-sm text-dark"><a>Danh sách tài khoản quản trị</a></li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+<div class="d-flex">
+    <div class="mb-5">
+        <select id="idRole" name="idRole" style="padding-left:12px; width: 200px; border:1px solid" class="form-select" asp-items="ViewBag.QuyenTruyCap">
+            <option value="0" disabled selected>Chọn quyền truy cập</option>
+        </select>
+    </div>
+    <div style="margin-left: 12px">
+        <select id="idStatus" name="idStatus" style="padding-left:12px; width: 160px; border:1px solid" class="form-select" asp-items="ViewBag.TrangThai">
+            <option value="" disabled selected>Chọn trạng thái</option>
+        </select>
+    </div>
+</div>
+<div class="col-12">
+    <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Danh sách tài khoản quản trị</h6>
+            </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Họ tên</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Điện thoại</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quyền truy cập</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">@item.AccountId</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.FullName</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.Email</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.Phone</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.Role.Description</p>
+                                    </td>
+                                    <td>
+                                        @if(item.Active == true)
+                                        {
+                                            <p class="text-xs font-weight-bold mb-0">Active</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-xs font-weight-bold mb-0">Block</p>
+                                        }
+                                    </td>
+                                    <td class="align-middle">
+                                        <a class="btn btn-link text-dark px-3 mb-0" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Details" asp-route-id="@item.AccountId">
+                                            <i class="material-icons text-sm me-2">vision</i>
+                                            Xem |
+                                        </a>
+                                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="if(confirm('Bạn có chắn muốn xóa ?')) { location.href = '@Url.Action("Delete", new { id = item.AccountId })'; }">
+                                            <i class="material-icons text-sm me-2">delete</i>
+                                            Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

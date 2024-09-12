@@ -1,0 +1,84 @@
+﻿<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7">
+                    <div class="header__top__left">
+                        <p>Free shipping, 30-day return or refund guarantee.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="header__top__hover">
+                                <span><a style="color: aliceblue" href="/my-account.html"><i class="fa fa-user"></i><i class="arrow_carrot-down"></i></a></span>
+                                <ul>
+                                    <li style="width: 100px"><a href="/my-account.html">Tài khoản</a></li>
+                                    <hr />
+                                    <li style="width: 100px"><a href="/Account/LogOut">Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="header__top__links">
+                                <a href="/dang-nhap.html" class="my-auto">
+                                    Đăng nhập 
+                                </a>
+                                <a href="/dang-ky.html" class="my-auto">
+                                    Đăng ký
+                                </a>
+                            </div>
+                        } 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a asp-controller="Home" asp-action="Index"><img src="~/userassets/img/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
+                            <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["controller"].ToString() == "Product" && ViewContext.RouteData.Values["action"].ToString() == "IndexShirt" ? "active" : "")">
+                            <a asp-controller="Product" asp-action="IndexShirt">Áo</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["controller"].ToString() == "Product" && ViewContext.RouteData.Values["action"].ToString() == "IndexPant" ? "active" : "")">
+                            <a asp-controller="Product" asp-action="IndexPant">Quần</a>
+                        </li>
+                        <li class="@(ViewContext.RouteData.Values["controller"].ToString() == "Product" && ViewContext.RouteData.Values["action"].ToString() == "IndexOutwear" ? "active" : "")">
+                            <a asp-controller="Product" asp-action="IndexOutwear">Áo khoác</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option">
+                    <div class="header__cart">
+                        @await Component.InvokeAsync("NumberCart")
+                        @await Component.InvokeAsync("HeaderCart")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+@section Scripts
+{
+    <script>
+        document.querySelector('.remove-item').addEventListener('click', function(event) {
+            event.preventDefault();
+            this.closest('.cart-item').remove();
+        });
+    </script>
+}

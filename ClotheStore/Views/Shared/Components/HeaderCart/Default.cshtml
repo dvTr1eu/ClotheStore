@@ -1,0 +1,87 @@
+﻿@model List<ClotheStore.ModelView.CartItem>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="cart-dropdown">
+        @foreach (var item in Model)
+        {
+            string url = $"/{item.product.Alias}-{item.product.ProductId}.html";
+            <div class="cart-item">
+                <a href="@url">
+                    <img src="@item.urlImg" alt="Product Image">
+                </a>
+                <div class="cart-item-details">
+                    <p>@item.product.ProductName - @item.size</p>
+                    <span>@item.amount × @item.product.Price.Value.ToString("#,##0")₫</span>
+                </div>
+                <a style="cursor: pointer" class="remove-item" data-productid="@item.product.ProductId" data-size="@item.size" data-src="@item.urlImg">
+                    &times;
+                </a>
+            </div>
+        }
+        <div class="cart-total">
+            <span>Tổng số phụ:</span>
+            <strong>@Model.Sum(x => x.totalMoney).ToString("#,##0")₫</strong>
+        </div>
+        <div class="cart-actions">
+            <a href="/giohang.html" class="btn btn-primary">Xem Giỏ Hàng</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="/thanhtoan.html" class="btn btn-danger">Thanh Toán</a>
+            }
+            else
+            {
+                <a href="/dang-nhap.html?returnUrl=/thanhtoan.html" class="btn btn-danger">Thanh Toán</a>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="cart-dropdown">
+        <div>
+            <img style="width: 150px; height: 150px; margin-right: 65px; object-fit: cover" src="~/images/shopping-cart-default.png" />
+            <p style="margin-right: 12px">Chưa có sản phẩm trong giỏ hàng</p>
+        </div>
+        <div class="cart-actions">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Quay lại trang mua sắm</a>
+        </div>
+    </div>
+}
+
+<script src="~/userassets/js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".remove-item").click(function (e) {
+            e.preventDefault();
+            var productId = $(this).data("productid");
+            var size = $(this).data("size");
+            var urlImg = $(this).data("src");
+            $.ajax({
+                url: "/api/cart/remove",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    productId: productId,
+                    size: size,
+                    urlImg: urlImg
+                },
+                success: function (response) {
+                    if (response.success) {
+                        loadHeaderCart();
+                        location.reload();
+                    } else {
+                        alert("Xóa thất bại.");
+                    }
+                },
+                error: function (error) {
+                    alert("An error occurred: " + error.responseText);
+                }
+            });
+        });
+        function loadHeaderCart() {
+            $("#headerCart").load("/AjaxContent/HeaderCart");
+            $("#numberCart").load("/AjaxContent/NumberCart");
+        }
+    });
+</script>

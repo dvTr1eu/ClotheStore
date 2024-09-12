@@ -1,0 +1,36 @@
+﻿@model List<ClotheStore.Models.Product>
+<!-- Related Section Begin -->
+@if (Model != null)
+{
+    foreach (var itemProduct in Model)
+    {
+        string url = $"/Product/Details/{itemProduct.ProductId}";
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="product__item">
+                @{
+                    var firstImage = itemProduct.ProductImages.FirstOrDefault();
+                }
+                @if (firstImage != null)
+                {
+                    <div class="product__item__pic set-bg">
+                        <a href="@url">
+                            <img src="~/images/sanphamImg/@firstImage.ImageUrl"/>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="product__item__pic set-bg">
+                        <img src="~/images/sanphamImg/default.jpg" />
+                    </div>
+                }
+                <div class="product__item__text">
+                    <h6>@itemProduct.ProductName</h6>
+                    <a href="@url" class="add-cart">=> Xem chi tiết</a>
+                    <h5>@itemProduct.Price.Value.ToString("#,##0")₫</h5>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!-- Related Section End -->

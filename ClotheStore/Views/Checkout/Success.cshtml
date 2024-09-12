@@ -1,0 +1,35 @@
+﻿@model ClotheStore.ModelView.MuaHangSuccessVM
+
+@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Checkout Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-12 col-lg-6 col-xl-7">
+                <h2 class="mb-4" style="text-align: center">@ViewBag.SendMail</h2>
+                <p>Mã đơn hàng: #@Model.DonHangID</p>
+                <p>Cảm ơn bạn đã đặt hàng</p>
+                <hr />
+                <p>
+                    Bạn sẽ nhận được email xác nhận đơn hàng với các chi tiết về đơn đặt hàng của bạn và một liên kết để theo dõi tiến trình của nó.
+                </p>
+                <p>
+                    Tất cả thông tin cần thiết về việc giao hàng, chúng tôi đã gửi đến email của bạn
+                </p>
+                <div style="display: flex; justify-content: center;">
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Tiếp tục mua hàng</a>
+                    <a style="margin-left: 12px" asp-action="Index" asp-controller="Account" class="btn btn-primary">Xem danh sách đơn hàng</a>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-5">
+                <h2 class="mb-4" style="text-align: center">Thông tin giao hàng</h2>
+                <p>Người nhận hàng: <strong>@Model.FullName</strong></p>
+                <p>Số điện thoại: <strong>@Model.Phone</strong></p>
+                <p>Địa chỉ nhận hàng: <strong>@ViewBag.FullAddress</strong></p>
+            </div>
+        </div>
+    </div>
+</div>

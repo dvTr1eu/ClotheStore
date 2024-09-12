@@ -1,0 +1,163 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<ClotheStore.Models.Order>
+
+@{
+    ViewData["Title"] = "Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int i = 0;
+}
+
+<div class="d-flex">
+    <div class="pe-md-3" style="display: flex; align-items: center; padding-bottom: 12px">
+        <div class="input-group input-group-outline">
+            <label class="form-label">Tìm kiếm tên khách hàng</label>
+            <input id="key" name="key" type="text" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="col-12">
+    <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Danh sách đơn hàng</h6>
+            </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">STT</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên khách hàng</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày mua</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tổng tiền</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trạng thái</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fill_table">
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                if(item.Deleted != true)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@i</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@item.OrderId</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@item.Customer.FullName</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@String.Format("{0:dd/MM/yyyy}", item.OrderDate)</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@item.TotalMoney.Value.ToString("#,##0")₫</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@item.TransactStatus.Status</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a class="btn btn-link text-dark px-3 mb-0" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
+                                                <i class="material-icons text-sm me-2">visibility</i>
+                                                Xem |
+                                            </a>
+                                            <a href="@Url.Action("ChangeStatus", new { id = item.OrderId })" class="change-status-link btn btn-link text-dark px-3 mb-0" data-toggle="modal" data-target="#changeStatusModal">
+                                                <i class="material-icons text-sm me-2">edit</i>
+                                                Cập nhật trạng thái |
+                                            </a>
+                                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="if(confirm('Bạn có chắc chắn muốn hủy đơn hàng ?')) { location.href = '@Url.Action("Cancel", new { id = item.OrderId })'; }">
+                                                <i class="material-icons text-sm me-2">close</i>
+                                                Hủy
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td style="color:red">
+                                            <p class="text-xs font-weight-bold mb-0">@i</p>
+                                        </td>
+                                        <td style="color:red">
+                                            <p class="text-xs font-weight-bold mb-0">@item.OrderId</p>
+                                        </td>
+                                        <td style="color:red">
+                                            <p class="text-xs font-weight-bold mb-0">@item.Customer.FullName</p>
+                                        </td>
+                                        <td style="color:red">
+                                            <p class="text-xs font-weight-bold mb-0">@String.Format("{0:dd/MM/yyyy}", item.OrderDate)</p>
+                                        </td>
+                                        <td style="color:red">
+                                            <p class="text-xs font-weight-bold mb-0">@item.TotalMoney.Value.ToString("#,##0")₫</p>
+                                        </td>
+                                        <td style="color:red">
+                                            <p class="text-xs font-weight-bold mb-0">@item.TransactStatus.Status</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a class="btn btn-link text-dark px-3 mb-0" asp-area="Admin" asp-controller="AdminOrders" asp-action="Details" asp-route-id="@item.OrderId">
+                                                <i class="material-icons text-sm me-2">visibility</i>
+                                                Xem |
+                                            </a>
+                                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="if(confirm('Bạn có chắc chắn muốn xóa đơn hàng ?')) { location.href = '@Url.Action("Delete", new { id = item.OrderId })'; }">
+                                                <i class="material-icons text-sm me-2">delete</i>
+                                                Xóa
+                                            </a>
+                                            <p style="color:red" class="text-xs font-weight-bold mb-0">
+                                                ĐƠN HÀNG ĐÃ HỦY
+                                            </p>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div>
+                    <ul class="pagination">
+                        <pager style="align-items: center" options="PagedListRenderOptions.Bootstrap4PageNumbersOnly" class="pager-container" list="@Model" asp-route-CatId="@ViewBag.CurrentCatId" asp-area="Admin" asp-controller="AdminProducts" asp-action="Index"></pager>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.change-status-link').click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+
+                $('#changeStatusModal .modal-content').load(url, function () {
+                    $('#changeStatusModal').modal('show');
+                });
+            });
+
+            $("#key").keyup(function () {
+                var strKey = $("#key").val().trim();
+                console.log(strKey);
+                $.ajax({
+                    url: "/Admin/Search/FindOrder/",
+                    datatype: "json",
+                    type: "POST",
+                    data: { key: strKey },
+                    async: true,
+                    success: function (results) {
+                        $("#fill_table").html("");
+                        $("#fill_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert("Loi !");
+                    }
+                });
+            });
+        });
+    </script>
+}

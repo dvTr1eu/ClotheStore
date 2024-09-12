@@ -1,0 +1,142 @@
+﻿@model ClotheStore.Models.Product
+
+@{
+    ViewData["Title"] = "Cập nhật thông tin sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Cập nhật thông tin sản phẩm</h1>
+
+<hr />
+<div class="row">
+    <div class="mt-4">
+        <form asp-action="Edit" asp-controller="AdminProducts" enctype="multipart/form-data" asp-route-id="@Model.ProductId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+            <input type="hidden" asp-for="CreateDate" />
+            <div class="form-group mb-3">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label">Tên sản phẩm</label>
+                        <input style="border: 1px solid; padding-left: 4px; width: 320px" asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+
+                        <div class="row">
+                            <div class="form-group mb-3 col-md-2">
+                                <label class="control-label">Danh mục</label>
+                                <select style="border: 1px solid; padding-left: 4px; width: 90px" asp-for="CatId" class="form-control" asp-items="ViewBag.DanhMuc"></select>
+                            </div>
+
+                            <div class="form-group mb-3 col-md-3">
+                                <label asp-for="ProductSizes" class="control-label">Size và Số lượng</label>
+                                @foreach (var size in ViewBag.Sizes as List<Size>)
+                                {
+                                    <div class="form-group form-size">
+                                        <input style="margin: 0 4px" type="checkbox" name="selectedSizes" value="@size.SizeId"
+                                        @(Model.ProductSizes.Any(ps => ps.SizeId == size.SizeId) ? "checked" : "") />
+                                        @size.SizeName
+                                        <input class="form-control form-input-quantity" type="number" name="quantities" min="0"
+                                               value="@(Model.ProductSizes.FirstOrDefault(ps => ps.SizeId == size.SizeId)?.Quantity ?? 0)" />
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group mb-3 col-md-3">
+                                <label asp-for="CreateDate" class="control-label">Ngày tạo</label>
+                                <input type="date" style="border: 1px solid; padding-left: 4px" asp-for="CreateDate" class="form-control" />
+                                <span asp-validation-for="CreateDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group mb-3 col-md-4">
+                                <label class="control-label">Tiêu đề</label>
+                                <input type="text" style="border: 1px solid; padding-left: 4px" asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-3 col-md-4">
+                                <label class="control-label">Alias</label>
+                                <input type="text" style="border: 1px solid; padding-left: 4px" asp-for="Alias" class="form-control" />
+                                <span asp-validation-for="Alias" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-3 col-md-8">
+                                <label class="control-label">Mô tả ngắn</label>
+                                <input type="text" style="border: 1px solid; padding-left: 4px" asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-3 col-md-4">
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input checked="" class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                                    </label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="BestSeller" /> @Html.DisplayNameFor(model => model.BestSeller)
+                                    </label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="HomeFlag" /> @Html.DisplayNameFor(model => model.HomeFlag)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Giá</label>
+                        <input min="0" style="border: 1px solid; padding-left: 4px; width: 90px" asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+
+                        <label class="control-label">Giảm giá</label>
+                        <input min="0" style="border: 1px solid; padding-left: 4px; width: 90px" asp-for="Discount" class="form-control" />
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ProductImages" class="control-label">Hình ảnh hiện tại</label>
+                <div>
+                    @foreach (var image in Model.ProductImages)
+                    {
+                        <img src="~/images/sanphamImg/@image.ImageUrl?@(Guid.NewGuid())" alt="Image" width="200" height="200" />
+                    }
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ProductImages" class="control-label">Thay đổi hình ảnh</label>
+                <input style="border: 1px solid; padding-left: 4px; width: 50%" name="fImages" multiple asp-for="ProductImages" class="form-control" type="file" />
+                <span asp-validation-for="ProductImages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại</a>
+</div>
+
+@section Styles{
+    <style>
+        .form-size{
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+            position: relative
+        }
+        .form-input-quantity{
+            border: 1px solid;
+            padding-left: 4px;
+            width: 50px;
+            margin: 0 16px;
+            position: absolute;
+            right: 0
+        }
+    </style>
+}
+
