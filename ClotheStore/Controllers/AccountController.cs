@@ -174,70 +174,77 @@ namespace ClotheStore.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                bool isEmail = Utilities.IsValidateEmail(taikhoan.Email);
+                if (isEmail)
                 {
-                    string salt = Utilities.RandomKey();
-                    Customer khachHang = new Customer
+                    if (ModelState.IsValid)
                     {
-                        FullName = taikhoan.CustomerName,
-                        Phone = taikhoan.Phone.Trim().ToLower(),
-                        Email = taikhoan.Email.Trim().ToLower(),
-                        Password = (taikhoan.Password + salt.Trim()).ToMD5(),
-                        Salt = salt,
-                        Active = true,
-                        CreateDate = DateTime.Now,
-                        IsEmailConfirmed = false
-                    };
-                    try
-                    {
-                        if (khachHang.Email != taikhoan.Email)
+                        string salt = Utilities.RandomKey();
+                        Customer khachHang = new Customer
                         {
-                            _context.Add(khachHang);
-                            await _context.SaveChangesAsync();
-
-                            var confirmationLink = Url.Action("ConfirmEmail", "Account", new
+                            FullName = taikhoan.CustomerName,
+                            Phone = taikhoan.Phone.Trim().ToLower(),
+                            Email = taikhoan.Email.Trim().ToLower(),
+                            Password = (taikhoan.Password + salt.Trim()).ToMD5(),
+                            Salt = salt,
+                            Active = true,
+                            CreateDate = DateTime.Now,
+                            IsEmailConfirmed = false
+                        };
+                        bool existEmail = _context.Customers.Any(x => x.Email == taikhoan.Email);
+                        try
+                        {
+                            if (!existEmail)
                             {
-                                token = khachHang.CustomerId,
-                                email = khachHang.Email
-                            }, Request.Scheme);
-
-                            var mailContent = new MailContent
-                            {
-                                ToEmail = khachHang.Email,
-                                Subject = "XÁC THỰC TÀI KHOẢN",
-                                Body = $"<p>Vui lòng xác thực tài khoản bằng cách nhấp vào liên kết sau: <a href='{confirmationLink}'>Xác thực tài khoản</a></p>"
-                            };
-
-                            var sendMail = await _sendMailHelper.SendMail(mailContent);
-
-                            if(sendMail.Equals("Thành công"))
-                            {
-                                HttpContext.Session.SetString("CustomerId", khachHang.CustomerId.ToString());
-                                var taiKhoanId = HttpContext.Session.GetString("CustomerId");
-
-                                var claims = new List<Claim>
+                                var confirmationLink = Url.Action("ConfirmEmail", "Account", new
                                 {
-                                new Claim(ClaimTypes.Name, khachHang.FullName),
-                                new Claim("CustomerId", khachHang.CustomerId.ToString())
+                                    token = khachHang.CustomerId,
+                                    email = khachHang.Email
+                                }, Request.Scheme);
+
+                                var mailContent = new MailContent
+                                {
+                                    ToEmail = khachHang.Email,
+                                    Subject = "XÁC THỰC TÀI KHOẢN",
+                                    Body = $"<p>Vui lòng xác thực tài khoản bằng cách nhấp vào liên kết sau: <a href='{confirmationLink}'>Xác thực tài khoản</a></p>"
                                 };
-                                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "login");
-                                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                                await HttpContext.SignInAsync(claimsPrincipal);
-                                _notyfService.Success("Đăng ký thành công");
-                                return Redirect("/dang-nhap.html");
+
+                                var sendMail = await _sendMailHelper.SendMail(mailContent);
+
+                                if (sendMail.Equals("Thành công"))
+                                {
+                                    _context.Add(khachHang);
+                                    await _context.SaveChangesAsync();
+
+                                    HttpContext.Session.SetString("CustomerId", khachHang.CustomerId.ToString());
+                                    var taiKhoanId = HttpContext.Session.GetString("CustomerId");
+
+                                    var claims = new List<Claim>
+                                    {
+                                    new Claim(ClaimTypes.Name, khachHang.FullName),
+                                    new Claim("CustomerId", khachHang.CustomerId.ToString())
+                                    };
+                                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "login");
+                                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                                    await HttpContext.SignInAsync(claimsPrincipal);
+                                    //return Redirect("/dang-nhap.html");
+                                    return RedirectToAction("Login", "Account");
+                                }
                             }
+                            return View(taikhoan);
                         }
+                        catch (Exception ex)
+                        {
+                            return RedirectToAction("DangKyTaiKhoan", "Account");
+                        }
+                    }
+                    else
+                    {
                         return View(taikhoan);
                     }
-                    catch (Exception ex)
-                    {
-                        return RedirectToAction("DangKyTaiKhoan", "Account");
-                    }
                 }
-                else
-                {
-                    return View(taikhoan);
-                }
+                 ModelState.AddModelError(string.Empty, "Email không hợp lệ");
+                 return View(taikhoan);
             }
             catch
             {
@@ -257,11 +264,11 @@ namespace ClotheStore.Controllers
                 await _context.SaveChangesAsync();
 
                 _notyfService.Success("Xác thực email thành công, bạn có thể đăng nhập.");
-                return Redirect("/dang-nhap.html");
+                return View("ConfirmEmailSuccess");
             }
 
             _notyfService.Error("Xác thực email không thành công.");
-            return Redirect("/dang-nhap.html");
+            return View("ConfirmEmailFailure");
         }
 
         [AllowAnonymous]
@@ -290,7 +297,6 @@ namespace ClotheStore.Controllers
                     if (!isEmail)
                     {
                         ModelState.AddModelError(string.Empty, "Email không hợp lệ");
-                        //_notyfService.Error("Email không hợp lệ");
                         return View(customer);
                     }
 
@@ -301,7 +307,6 @@ namespace ClotheStore.Controllers
                     if (khachHang == null)
                     {
                         ModelState.AddModelError(string.Empty, "Tài khoản không tồn tại");
-                        //_notyfService.Error("Tài khoản không tồn tại");
                         return RedirectToAction("DangKyTaiKhoan", "Account");
                     }
                     else if(khachHang != null && khachHang.IsEmailConfirmed == false)
@@ -314,7 +319,6 @@ namespace ClotheStore.Controllers
                     if (khachHang.Password != pass)
                     {
                         ModelState.AddModelError(string.Empty, "Mật khẩu không chính xác");
-                        //_notyfService.Error("Mật khẩu không chính xác");
                         return View(customer);
                     }
 

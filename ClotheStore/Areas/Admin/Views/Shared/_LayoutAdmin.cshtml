@@ -124,14 +124,12 @@
     
     <script>
         $(document).ready(function () {
-            // Lưu trạng thái trước khi điều hướng
             $('.nav-link').click(function () {
                 const href = $(this).attr('href');
                 console.log("Saving active link:", href);
                 localStorage.setItem('activeNavLink', href);
             });
 
-            // Khôi phục trạng thái sau khi tải lại trang
             var activeLink = localStorage.getItem('activeNavLink');
             console.log("Restoring active link:", activeLink);
 

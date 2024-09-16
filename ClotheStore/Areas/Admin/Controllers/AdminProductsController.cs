@@ -21,7 +21,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace ClotheStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class AdminProductsController : Controller
     {
         private readonly ClothesStoreContext _context;
@@ -33,7 +32,6 @@ namespace ClotheStore.Areas.Admin.Controllers
             _notyfService = notyfService;
         }
 
-        // GET: Admin/AdminProducts
         public IActionResult Index(int page = 1, int CatId = 0)
         {
             var pageNumber = page;
@@ -80,7 +78,6 @@ namespace ClotheStore.Areas.Admin.Controllers
             return Json(new { status = "success", redirectUrl = url });
         }
 
-        // GET: Admin/AdminProducts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -102,7 +99,6 @@ namespace ClotheStore.Areas.Admin.Controllers
             return View(product);
         }
 
-        // GET: Admin/AdminProducts/Create
         public IActionResult Create()
         {
             ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName");

@@ -35,7 +35,6 @@ namespace ClotheStore.Helper
             try
             {
                 await smtp.ConnectAsync(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-                // lỗi bảo mật 2 bước => sử dụng mật khẩu ứng dụng
                 await smtp.AuthenticateAsync(_mailSettings.Mail, _mailSettings.Password);
                 await smtp.SendAsync(email);
             }
