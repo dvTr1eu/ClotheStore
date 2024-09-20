@@ -109,6 +109,7 @@
             var selectedQuantity = parseInt(quantityInput.value);
             console.log(quantityInput, maxQuantity, selectedQuantity)
             if (selectedQuantity > maxQuantity) {
+                console.log("ok")
                 document.getElementById('quantityError').style.display = 'block';
             } else {
                 document.getElementById('quantityError').style.display = 'none';
