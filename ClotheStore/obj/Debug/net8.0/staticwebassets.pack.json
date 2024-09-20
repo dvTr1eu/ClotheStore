@@ -1661,12 +1661,12 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\avatarImg\\avatartest.jpg",
-      "PackagePath": "staticwebassets\\images\\avatarImg\\avatartest.jpg"
-    },
-    {
       "Id": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\avatarImg\\default_user.png",
       "PackagePath": "staticwebassets\\images\\avatarImg\\default_user.png"
+    },
+    {
+      "Id": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\avatarImg\\re_img_cv_11.jpg",
+      "PackagePath": "staticwebassets\\images\\avatarImg\\re_img_cv_11.jpg"
     },
     {
       "Id": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\bangsize.jpg",

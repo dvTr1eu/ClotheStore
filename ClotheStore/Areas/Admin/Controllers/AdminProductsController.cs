@@ -17,6 +17,7 @@ using AspNetCoreHero.ToastNotification.Notyf;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using System.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace ClotheStore.Areas.Admin.Controllers
 {
@@ -32,6 +33,7 @@ namespace ClotheStore.Areas.Admin.Controllers
             _notyfService = notyfService;
         }
 
+        [ResponseCache(Duration = 60)]
         public IActionResult Index(int page = 1, int CatId = 0)
         {
             var pageNumber = page;

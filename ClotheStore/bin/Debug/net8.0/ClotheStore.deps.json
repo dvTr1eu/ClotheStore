@@ -37,6 +37,7 @@
       "ClotheStore/1.0.0": {
         "dependencies": {
           "AspNetCoreHero.ToastNotification": "1.1.0",
+          "LigerShark.WebOptimizer.Core": "3.0.426",
           "MailKit": "4.7.1.1",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "8.0.7",
           "Microsoft.EntityFrameworkCore": "8.0.7",
@@ -966,6 +967,20 @@
           "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
             "locale": "zh-Hant"
           }
+        }
+      },
+      "LigerShark.WebOptimizer.Core/3.0.426": {
+        "dependencies": {
+          "NUglify": "1.21.9"
+        },
+        "runtime": {
+          "lib/net8.0/WebOptimizer.Core.dll": {
+            "assemblyVersion": "3.0.426.0",
+            "fileVersion": "3.0.426.0"
+          }
+        },
+        "compile": {
+          "lib/net8.0/WebOptimizer.Core.dll": {}
         }
       },
       "MailKit/4.7.1.1": {
@@ -2188,6 +2203,17 @@
         },
         "compile": {
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
+        }
+      },
+      "NUglify/1.21.9": {
+        "runtime": {
+          "lib/net5.0/NUglify.dll": {
+            "assemblyVersion": "1.21.9.0",
+            "fileVersion": "1.21.9.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/NUglify.dll": {}
         }
       },
       "PagedList.Core/1.17.4": {
@@ -4721,6 +4747,13 @@
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
     },
+    "LigerShark.WebOptimizer.Core/3.0.426": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Mc4FFKL40n2f4ognnwDrvFxLt+2CdsovhCobaS8u2HXriS2OP8uMDwDIwmE2irlAW+HhR04a+wF1XImtFPxxRg==",
+      "path": "ligershark.weboptimizer.core/3.0.426",
+      "hashPath": "ligershark.weboptimizer.core.3.0.426.nupkg.sha512"
+    },
     "MailKit/4.7.1.1": {
       "type": "package",
       "serviceable": true,
@@ -5224,6 +5257,13 @@
       "sha512": "sha512-ypnSvEtpNGo48bAWn95J1oHChycCXcevFSbn53fqzLxlXFSZP7dawu8p/7mHAfGufZQSV2sBpW80XQGIfXO8kQ==",
       "path": "nuget.versioning/6.9.1",
       "hashPath": "nuget.versioning.6.9.1.nupkg.sha512"
+    },
+    "NUglify/1.21.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ULyI/scrIRAo2In6cnaCc/QkWUt+wB6pBVt5lrVddOKyamsCAm1XgArkk4px9tVn6SipjhbTt4M38QPlpoET+g==",
+      "path": "nuglify/1.21.9",
+      "hashPath": "nuglify.1.21.9.nupkg.sha512"
     },
     "PagedList.Core/1.17.4": {
       "type": "package",

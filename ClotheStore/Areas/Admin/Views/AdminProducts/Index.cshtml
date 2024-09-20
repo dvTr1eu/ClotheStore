@@ -63,7 +63,7 @@
                                             <div class="d-flex flex-column justify-content-center">
                                                 @foreach(var image in item.ProductImages)
                                                 {
-                                                    <img style="width: 100px; height: 100px" src="~/images/sanphamImg/@image.ImageUrl?@(Guid.NewGuid())" />
+                                                    <img loading="lazy" style="width: 100px; height: 100px" src="~/images/sanphamImg/@image.ImageUrl?@(Guid.NewGuid())" />
                                                 }
                                             </div>
                                         </div>

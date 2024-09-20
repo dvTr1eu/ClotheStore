@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XyXjDweS+PM=",
+  "dgSpecHash": "XfpozbK14FI=",
   "success": true,
   "projectFilePath": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\ClotheStore.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,7 @@
     "C:\\Users\\dvtri\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\dvtri\\.nuget\\packages\\ligershark.weboptimizer.core\\3.0.426\\ligershark.weboptimizer.core.3.0.426.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\mailkit\\4.7.1.1\\mailkit.4.7.1.1.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\8.0.7\\microsoft.aspnetcore.mvc.razor.runtimecompilation.8.0.7.nupkg.sha512",
@@ -130,6 +131,7 @@
     "C:\\Users\\dvtri\\.nuget\\packages\\nuget.projectmodel\\6.9.1\\nuget.projectmodel.6.9.1.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
+    "C:\\Users\\dvtri\\.nuget\\packages\\nuglify\\1.21.9\\nuglify.1.21.9.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\pagedlist.core\\1.17.4\\pagedlist.core.1.17.4.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\pagedlist.core.mvc\\3.0.0\\pagedlist.core.mvc.3.0.0.nupkg.sha512",
     "C:\\Users\\dvtri\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",

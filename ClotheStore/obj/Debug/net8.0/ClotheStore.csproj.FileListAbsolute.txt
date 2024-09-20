@@ -563,3 +563,5 @@ E:\ProjectWeb\WebTrain\ClotheStore\bin\Debug\net8.0\BouncyCastle.Cryptography.dl
 E:\ProjectWeb\WebTrain\ClotheStore\bin\Debug\net8.0\MailKit.dll
 E:\ProjectWeb\WebTrain\ClotheStore\bin\Debug\net8.0\MimeKit.dll
 E:\ProjectWeb\WebTrain\ClotheStore\obj\Debug\net8.0\ClotheStore.sourcelink.json
+E:\ProjectWeb\WebTrain\ClotheStore\bin\Debug\net8.0\WebOptimizer.Core.dll
+E:\ProjectWeb\WebTrain\ClotheStore\bin\Debug\net8.0\NUglify.dll

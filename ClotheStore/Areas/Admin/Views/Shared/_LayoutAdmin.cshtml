@@ -12,12 +12,13 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
     <!-- Nucleo Icons -->
-    <link href="~/adminassets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="~/adminassets/css/nucleo-svg.css" rel="stylesheet" />
+     @* <link href="~/adminassets/css/nucleo-icons.css" rel="stylesheet" />
+     <link href="~/adminassets/css/nucleo-svg.css" rel="stylesheet" /> *@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
-    <link id="pagestyle" href="~/adminassets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+    @* <link id="pagestyle" href="~/adminassets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" /> *@
+    <link rel="stylesheet" href="~/css/bundle.css" />
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -114,15 +115,16 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="~/adminassets/js/core/popper.min.js"></script>
-    <script src="~/adminassets/js/core/bootstrap.min.js"></script>
-    <script src="~/adminassets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="~/adminassets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="~/adminassets/js/plugins/chartjs.min.js"></script>
+    @* <script src="~/adminassets/js/core/popper.min.js" defer></script>
+    <script src="~/adminassets/js/core/bootstrap.min.js" defer></script>
+    <script src="~/adminassets/js/plugins/perfect-scrollbar.min.js" defer></script>
+    <script src="~/adminassets/js/plugins/smooth-scrollbar.min.js" defer></script>
+    <script src="~/adminassets/js/plugins/chartjs.min.js" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
+    <script src="~/js/bundle.js" defer></script>
+
+    <script defer>
         $(document).ready(function () {
             $('.nav-link').click(function () {
                 const href = $(this).attr('href');
@@ -147,7 +149,7 @@
         })
     </script>
 
-    <script>
+    <script defer>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
             var options = {
@@ -159,10 +161,10 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="~/adminassets/js/material-dashboard.min.js?v=3.1.0"></script>
+    <script a defer src="~/adminassets/js/material-dashboard.min.js?v=3.1.0"></script>
     @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", false).ConfigureAwait(false)
     @await RenderSectionAsync("Styles", false).ConfigureAwait(false)
-    </body>
+</body>
 
 </html>

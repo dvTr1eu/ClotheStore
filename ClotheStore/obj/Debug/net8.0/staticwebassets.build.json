@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "O1sWZUmwzHMiPXRHSZ7TwLlqKqH5cDhCqMDxjb/ENko=",
+  "Hash": "sJaLu0Cjg7fIGuccmqfc2EN7AWDspEwvkE1L0zQ1lsw=",
   "Source": "ClotheStore",
   "BasePath": "_content/ClotheStore",
   "Mode": "Default",
@@ -5603,25 +5603,6 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\avatarImg\\avatartest.jpg",
-      "SourceId": "ClotheStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\",
-      "BasePath": "_content/ClotheStore",
-      "RelativePath": "images/avatarImg/avatartest.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\avatarImg\\avatartest.jpg"
-    },
-    {
       "Identity": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\avatarImg\\default_user.png",
       "SourceId": "ClotheStore",
       "SourceType": "Discovered",
@@ -5639,6 +5620,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\avatarImg\\default_user.png"
+    },
+    {
+      "Identity": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\avatarImg\\re_img_cv_11.jpg",
+      "SourceId": "ClotheStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\",
+      "BasePath": "_content/ClotheStore",
+      "RelativePath": "images/avatarImg/re_img_cv_11.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatarImg\\re_img_cv_11.jpg"
     },
     {
       "Identity": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\wwwroot\\images\\bangsize.jpg",

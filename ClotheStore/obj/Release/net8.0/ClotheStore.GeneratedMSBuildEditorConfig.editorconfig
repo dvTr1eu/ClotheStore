@@ -142,6 +142,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ProjectWeb/WebTrain/ClotheStore/Views/Account/ConfirmEmailFailure.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb25maXJtRW1haWxGYWlsdXJlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/ProjectWeb/WebTrain/ClotheStore/Views/Account/ConfirmEmailSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb25maXJtRW1haWxTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ProjectWeb/WebTrain/ClotheStore/Views/Account/DangKyTaiKhoan.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEYW5nS3lUYWlLaG9hbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

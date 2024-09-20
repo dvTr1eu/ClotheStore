@@ -7,12 +7,19 @@
       "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\areas\\admin\\views\\shared\\_sidenavpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\areas\\admin\\views\\shared\\_sidenavpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\controllers\\shoppingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dvtri\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\staticwebassets\\notyf.min.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\areas\\admin\\views\\adminproducts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\areas\\admin\\views\\adminproducts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|e:\\projectweb\\webtrain\\clothestore\\areas\\admin\\controllers\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B84557D9-00E4-4372-BC50-7F2248CB6B95}|ClotheStore\\ClotheStore.csproj|solutionrelative:clothestore\\areas\\admin\\controllers\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +37,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_SideNavPartialView.cshtml",
-              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Views\\Shared\\_SideNavPartialView.cshtml",
-              "RelativeDocumentMoniker": "ClotheStore\\Areas\\Admin\\Views\\Shared\\_SideNavPartialView.cshtml",
-              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Views\\Shared\\_SideNavPartialView.cshtml",
-              "RelativeToolTip": "ClotheStore\\Areas\\Admin\\Views\\Shared\\_SideNavPartialView.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "notyf.min.js",
+              "DocumentMoniker": "C:\\Users\\dvtri\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\staticwebassets\\notyf.min.js",
+              "ToolTip": "C:\\Users\\dvtri\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\staticwebassets\\notyf.min.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-20T06:17:01.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Views\\AdminProducts\\Index.cshtml",
+              "RelativeDocumentMoniker": "ClotheStore\\Areas\\Admin\\Views\\AdminProducts\\Index.cshtml",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Views\\AdminProducts\\Index.cshtml",
+              "RelativeToolTip": "ClotheStore\\Areas\\Admin\\Views\\AdminProducts\\Index.cshtml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAEEAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-16T11:53:35.589Z",
+              "WhenOpened": "2024-09-20T06:06:35.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Program.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Program.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Program.cs",
+              "RelativeToolTip": "ClotheStore\\Program.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwCcAAAAXAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T05:53:22.817Z",
               "EditorCaption": ""
             },
             {
@@ -49,22 +80,22 @@
               "RelativeDocumentMoniker": "ClotheStore\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
               "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
               "RelativeToolTip": "ClotheStore\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAAAIMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHkAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-16T11:53:39.071Z",
+              "WhenOpened": "2024-09-20T05:51:03.612Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ShoppingCartController.cs",
-              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Controllers\\ShoppingCartController.cs",
-              "RelativeDocumentMoniker": "ClotheStore\\Controllers\\ShoppingCartController.cs",
-              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Controllers\\ShoppingCartController.cs",
-              "RelativeToolTip": "ClotheStore\\Controllers\\ShoppingCartController.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "AdminProductsController.cs",
+              "DocumentMoniker": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "RelativeDocumentMoniker": "ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "ToolTip": "E:\\ProjectWeb\\WebTrain\\ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "RelativeToolTip": "ClotheStore\\Areas\\Admin\\Controllers\\AdminProductsController.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwCQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:47:41.011Z",
+              "WhenOpened": "2024-09-20T05:49:32.995Z",
               "EditorCaption": ""
             }
           ]

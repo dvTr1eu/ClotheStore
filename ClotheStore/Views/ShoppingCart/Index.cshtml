@@ -36,7 +36,7 @@
                                     <td class="quantity__item">
                                         <div class="quantity">
                                             <div class="pro-qty-2">
-                                                <input id="quantityItem" type="number" min="1" value="@item.amount">
+                                                <input data-quantity="@item.productSize.Quantity" id="quantityItem" type="number" min="1" value="@item.amount" oninput="checkQuantity()">
                                             </div>
                                             <div id="quantityError" style="color:red; display:none;">Số lượng vượt quá số lượng trong kho</div>
                                         </div>
@@ -102,6 +102,18 @@
 @section Scripts
 {
     <script>
+        function checkQuantity() {
+            var quantityInput = document.getElementById('quantityItem');
+
+            var maxQuantity = parseInt(quantityInput.getAttribute('data-quantity'));
+            var selectedQuantity = parseInt(quantityInput.value);
+            console.log(quantityInput, maxQuantity, selectedQuantity)
+            if (selectedQuantity > maxQuantity) {
+                document.getElementById('quantityError').style.display = 'block';
+            } else {
+                document.getElementById('quantityError').style.display = 'none';
+            }
+        }
         $(document).ready(function() {
             $(function() {
                 $("#removeItem").click(function() {
@@ -167,7 +179,7 @@
                         console.log(cartItems)
                     }
                 });
-
+                
                 function loadHeaderCart() {
                     $("#headerCart").load("/AjaxContent/HeaderCart");
                     $("#numberCart").load("/AjaxContent/NumberCart");

@@ -49,6 +49,7 @@ namespace ClotheStore.Controllers
                 if (item == null)
                 {
                     Product hangHoa = _context.Products.SingleOrDefault(p => p.ProductId == productId);
+                    ProductSize sizeFull = _context.ProductSizes.FirstOrDefault(ps => ps.Size.SizeName == size);
 
                     if (hangHoa != null)
                     {
@@ -56,6 +57,7 @@ namespace ClotheStore.Controllers
                         {
                             amount = amount.HasValue ? amount.Value : 1,
                             product = hangHoa,
+                            productSize = sizeFull,
                             size = size,
                             urlImg = urlImg
                         };
